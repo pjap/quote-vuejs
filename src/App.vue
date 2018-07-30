@@ -3,7 +3,7 @@
     <appHeaderBar :maxQuotes="maxQuotes" :quoteCount="quotes.length"></appHeaderBar>
     <appNewQuote @addNewQuote="newQuote"></appNewQuote>
     <appQuoteGrid :quotes="quotes" @deleteQuote="deleteQuote"></appQuoteGrid>
-    <div class="row" v-if="quotes.length > 1">
+    <div class="row" v-if="quotes.length > 2">
       <div class="col-sm-12 text-center">
         <div class="alert alert-danger">
           <strong>Attention!</strong> Just Click The Quotes To Delete It.
@@ -39,10 +39,13 @@ export default {
   },
   methods: {
     newQuote(quote) {
-      if (this.quotes.length < this.maxQuotes) {
+      if (quote == '') {
+        alert('Please Fill The Quote! Cant Be Empty')
+      }
+      else if (this.quotes.length < this.maxQuotes) {
         this.quotes.push(quote)
       } else {
-        alert('Maximum Reached Of Quotes Are 10!')
+        alert('Maximum Of Reached Quotes Are 10 , Please Delete To Create New Quote!!!')
       }
     },
     deleteQuote(index) {
