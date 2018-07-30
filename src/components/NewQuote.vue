@@ -1,18 +1,19 @@
 <template>
-  <div class="row mt10">
+  <div class="row">
     <form>
       <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group">
         <label>Quote</label>
-        <textarea class="form-control" rows="3" cols="300" v-model="quote"></textarea>
+        <textarea rows="5" cols="80" class="form-control" v-model="quote"></textarea>
       </div>
       <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group">
-        <button class="btn btn-primary" @click.prevent="createNew">Add New Quote</button>
+        <button @click.prevent="newQuote" class="btn btn-primary">Add New Quote</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+
 export default {
   data: function() {
     return {
@@ -20,16 +21,20 @@ export default {
     }
   },
   methods: {
-    createNew() {
-      this.$emit('quoteAdded', this.quote)
+    newQuote() {
+      this.$emit('addNewQuote', this.quote)
       this.quote = ''
     }
   }
 }
 </script>
 
-<style>
-  .mt10 {
-    margin-top: 10px;
+<style scoped>
+  .mt20 {
+    margin-top: 20px;
+  }
+  textarea {
+    font-family: 'Kirang Haerang', cursive;
+    font-size: 20px;
   }
 </style>

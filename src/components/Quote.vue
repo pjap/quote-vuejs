@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 col-sm-6 col-lg-3">
+  <div class="col-sm-6 col-md-4 col-lg-3">
     <div class="panel panel-default">
       <div class="panel-body quote">
         <slot></slot>
@@ -9,23 +9,16 @@
 </template>
 
 <script>
-export default {
-  props: {
-    quotes: {
-      type: String,
-      required: true
-    }
+  export default {
+
   }
-}
 </script>
 
 <style scoped>
   .panel-body {
     font-family: 'Kirang Haerang', cursive;
-    font-size: 25px;
+    font-size: 24px;
     color: #6e6e6e;
-    border: 1px solid #cccc;
-    padding: 10px;
   }
   .quote {
     cursor: pointer;

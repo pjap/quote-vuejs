@@ -1,11 +1,20 @@
 <template>
   <div class="container">
-    <appHeader :quoteCount="quotes.length" :maxQuotes="maxQuotes"></appHeader>
-    <appNewQuote @quoteAdded="NewQuote"></appNewQuote>
-    <appQuoteGrid :quotes="quotes" @quoteDeleted="deleteQuote"></appQuoteGrid>
-    <div class="row">
+    <appHeaderBar :maxQuotes="maxQuotes" :quoteCount="quotes.length"></appHeaderBar>
+    <appNewQuote @addNewQuote="newQuote"></appNewQuote>
+    <appQuoteGrid :quotes="quotes" @deleteQuote="deleteQuote"></appQuoteGrid>
+    <div class="row" v-if="quotes.length > 1">
       <div class="col-sm-12 text-center">
-        <div class="alert alert-info">Info: Click on A Quote to delete it!</div>
+        <div class="alert alert-danger">
+          <strong>Attention!</strong> Just Click The Quotes To Delete It.
+        </div>
+      </div>
+    </div>
+    <div class="row" v-else>
+      <div class="col-sm-12 text-center">
+        <div class="alert alert-info">
+          <strong>Attention!</strong> Just Input The Quote Area To Add New Quote.
+        </div>
       </div>
     </div>
   </div>
@@ -14,7 +23,7 @@
 <script>
 import QuoteGrid from './components/QuoteGrid.vue'
 import NewQuote from './components/NewQuote.vue'
-import Header from './components/Header.vue'
+import HeaderBar from './components/Header.vue'
 
 export default {
   data: function() {
@@ -26,14 +35,14 @@ export default {
   components: {
     appQuoteGrid: QuoteGrid,
     appNewQuote: NewQuote,
-    appHeader: Header
+    appHeaderBar: HeaderBar
   },
   methods: {
-    NewQuote(quote) {
+    newQuote(quote) {
       if (this.quotes.length < this.maxQuotes) {
         this.quotes.push(quote)
       } else {
-        alert('Quotes Tidak Boleh Lebih Dari 10')
+        alert('Maximum Reached Of Quotes Are 10!')
       }
     },
     deleteQuote(index) {
@@ -43,5 +52,5 @@ export default {
 }
 </script>
 
-<style >
+<style>
 </style>
